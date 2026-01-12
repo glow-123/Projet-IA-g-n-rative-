@@ -1,0 +1,454 @@
+{
+  "blocs": [
+    {"BlockID": "B01", "Nom": "Thriller", "Description": "Films à suspense avec tension narrative intense"},
+    {"BlockID": "B02", "Nom": "Romance", "Description": "Films centrés sur les relations amoureuses"},
+    {"BlockID": "B03", "Nom": "Comédie", "Description": "Films humoristiques et divertissants"},
+    {"BlockID": "B04", "Nom": "Science-Fiction", "Description": "Films explorant technologies et futurs possibles"},
+    {"BlockID": "B05", "Nom": "Drame", "Description": "Films émotionnels traitant de sujets profonds"},
+    {"BlockID": "B06", "Nom": "Action", "Description": "Films dynamiques avec scènes spectaculaires"},
+    {"BlockID": "B07", "Nom": "Horreur", "Description": "Films conçus pour effrayer et créer l'angoisse"},
+    {"BlockID": "B08", "Nom": "Animation", "Description": "Films d'animation pour tous publics"}
+  ],
+  "films": [
+    {
+      "FilmID": "F01",
+      "BlockID": "B01",
+      "Categorie": "Thriller",
+      "Film": "Inception",
+      "Description": "Un voleur spécialisé dans l'extraction de secrets enfouis dans l'inconscient se voit offrir une chance de retrouver sa vie en échange d'une mission impossible : implanter une idée dans l'esprit d'un homme. Un thriller cérébral aux frontières du rêve et de la réalité.",
+      "Keywords": "rêves, espionnage mental, Nolan, suspense, complexe"
+    },
+    {
+      "FilmID": "F02",
+      "BlockID": "B01",
+      "Categorie": "Thriller",
+      "Film": "Gone Girl",
+      "Description": "Le jour de son cinquième anniversaire de mariage, Nick Dunne signale la disparition de sa femme Amy. Sous la pression médiatique et policière, son portrait de mari idéal commence à s'effriter, révélant mensonges et secrets.",
+      "Keywords": "disparition, manipulation, médias, mariage, twist"
+    },
+    {
+      "FilmID": "F03",
+      "BlockID": "B01",
+      "Categorie": "Thriller",
+      "Film": "Se7en",
+      "Description": "Deux détectives, l'un novice et l'autre proche de la retraite, enquêtent sur une série de meurtres inspirés des sept péchés capitaux. Une traque sombre dans une ville pluvieuse qui mène à une conclusion dévastatrice.",
+      "Keywords": "serial killer, péchés capitaux, enquête, sombre, Fincher"
+    },
+    {
+      "FilmID": "F04",
+      "BlockID": "B01",
+      "Categorie": "Thriller",
+      "Film": "Shutter Island",
+      "Description": "En 1954, le marshal Teddy Daniels enquête sur la disparition d'une patiente dans un hôpital psychiatrique situé sur une île isolée. Plus il avance dans son investigation, plus la frontière entre réalité et folie devient floue.",
+      "Keywords": "psychiatrie, île, mystère, twist, Scorsese"
+    },
+    {
+      "FilmID": "F05",
+      "BlockID": "B01",
+      "Categorie": "Thriller",
+      "Film": "The Silence of the Lambs",
+      "Description": "Une jeune agent du FBI demande l'aide du brillant psychiatre et cannibale emprisonné Hannibal Lecter pour traquer un tueur en série qui sévit. Un jeu du chat et de la souris psychologique terrifiant.",
+      "Keywords": "FBI, cannibale, serial killer, psychologie, Hannibal"
+    },
+    {
+      "FilmID": "F06",
+      "BlockID": "B01",
+      "Categorie": "Thriller",
+      "Film": "Prisoners",
+      "Description": "Quand sa fille et celle de son voisin disparaissent, un père désespéré décide de mener sa propre enquête et franchit des limites morales pour retrouver les enfants. Un thriller intense sur la justice et la vengeance.",
+      "Keywords": "enlèvement, enquête, moralité, désespoir, Villeneuve"
+    },
+    {
+      "FilmID": "F07",
+      "BlockID": "B01",
+      "Categorie": "Thriller",
+      "Film": "Zodiac",
+      "Description": "Un caricaturiste de presse devient obsédé par la traque du tueur du Zodiaque qui terrorise San Francisco dans les années 1960-70. Une enquête qui consume des vies entières sans jamais aboutir à une arrestation.",
+      "Keywords": "tueur en série, obsession, journalisme, San Francisco, non résolu"
+    },
+    {
+      "FilmID": "F08",
+      "BlockID": "B02",
+      "Categorie": "Romance",
+      "Film": "The Notebook",
+      "Description": "Dans les années 1940, un jeune homme pauvre et une riche héritière vivent un amour passionné malgré leurs différences sociales. Des années plus tard, un homme lit leur histoire à une femme atteinte d'Alzheimer.",
+      "Keywords": "amour, classes sociales, Alzheimer, passion, éternel"
+    },
+    {
+      "FilmID": "F09",
+      "BlockID": "B02",
+      "Categorie": "Romance",
+      "Film": "La La Land",
+      "Description": "À Los Angeles, une actrice en herbe et un pianiste de jazz tombent amoureux tout en poursuivant leurs rêves. Une comédie musicale moderne sur l'amour, l'ambition et les choix difficiles de la vie.",
+      "Keywords": "musique, jazz, Hollywood, rêves, Los Angeles"
+    },
+    {
+      "FilmID": "F10",
+      "BlockID": "B02",
+      "Categorie": "Romance",
+      "Film": "Titanic",
+      "Description": "À bord du paquebot Titanic en 1912, une jeune aristocrate promise à un mariage arrangé tombe amoureuse d'un artiste sans le sou. Leur histoire d'amour se déroule alors que le navire se dirige vers son destin tragique.",
+      "Keywords": "paquebot, naufrage, classes sociales, tragédie, amour interdit"
+    },
+    {
+      "FilmID": "F11",
+      "BlockID": "B02",
+      "Categorie": "Romance",
+      "Film": "Pride and Prejudice",
+      "Description": "Dans l'Angleterre du XIXe siècle, Elizabeth Bennet rencontre le riche et orgueilleux Mr Darcy. Malgré leurs préjugés mutuels, une attraction irrésistible naît entre eux, menant à l'une des plus belles histoires d'amour.",
+      "Keywords": "Angleterre, XIXe siècle, préjugés, Austen, mariage"
+    },
+    {
+      "FilmID": "F12",
+      "BlockID": "B02",
+      "Categorie": "Romance",
+      "Film": "Before Sunrise",
+      "Description": "Un jeune Américain et une Française se rencontrent dans un train et décident de passer une nuit ensemble à Vienne avant de se séparer. Une nuit de conversations profondes et de connexion instantanée.",
+      "Keywords": "Vienne, rencontre, conversation, une nuit, connexion"
+    },
+    {
+      "FilmID": "F13",
+      "BlockID": "B02",
+      "Categorie": "Romance",
+      "Film": "Eternal Sunshine of the Spotless Mind",
+      "Description": "Après une rupture douloureuse, un couple décide d'effacer de leur mémoire tous les souvenirs de leur relation. Pendant la procédure, Joel réalise qu'il ne veut pas oublier Clementine et lutte pour préserver ses souvenirs.",
+      "Keywords": "mémoire, rupture, science-fiction, souvenirs, amour perdu"
+    },
+    {
+      "FilmID": "F14",
+      "BlockID": "B02",
+      "Categorie": "Romance",
+      "Film": "Notting Hill",
+      "Description": "Un modeste libraire londonien voit sa vie bouleversée quand une célèbre actrice hollywoodienne entre dans sa boutique. Une romance improbable entre deux mondes que tout oppose.",
+      "Keywords": "Londres, célébrité, libraire, comédie romantique, Hugh Grant"
+    },
+    {
+      "FilmID": "F15",
+      "BlockID": "B03",
+      "Categorie": "Comédie",
+      "Film": "The Grand Budapest Hotel",
+      "Description": "Les aventures de Gustave H, légendaire concierge d'un célèbre hôtel européen, et de Zero Moustafa, le lobby boy devenu son ami le plus fidèle. Une comédie excentrique sur l'amitié et la nostalgie d'un monde disparu.",
+      "Keywords": "hôtel, concierge, Europe, Wes Anderson, excentrique"
+    },
+    {
+      "FilmID": "F16",
+      "BlockID": "B03",
+      "Categorie": "Comédie",
+      "Film": "Superbad",
+      "Description": "Deux lycéens inséparables tentent de se procurer de l'alcool pour une fête afin d'impressionner les filles qu'ils aiment avant la fin du lycée. Une nuit chaotique et hilarante d'aventures adolescentes.",
+      "Keywords": "lycée, adolescence, fête, amitié, alcool"
+    },
+    {
+      "FilmID": "F17",
+      "BlockID": "B03",
+      "Categorie": "Comédie",
+      "Film": "The Hangover",
+      "Description": "Après un enterrement de vie de garçon à Las Vegas, trois amis se réveillent sans aucun souvenir de la nuit précédente et doivent retrouver le futur marié disparu avant le mariage.",
+      "Keywords": "Las Vegas, amnésie, mariage, fête, chaos"
+    },
+    {
+      "FilmID": "F18",
+      "BlockID": "B03",
+      "Categorie": "Comédie",
+      "Film": "Intouchables",
+      "Description": "Un aristocrate tétraplégique engage comme aide à domicile un jeune de banlieue tout juste sorti de prison. Une amitié improbable naît entre ces deux hommes que tout oppose.",
+      "Keywords": "handicap, amitié, banlieue, aristocratie, France"
+    },
+    {
+      "FilmID": "F19",
+      "BlockID": "B03",
+      "Categorie": "Comédie",
+      "Film": "Bridesmaids",
+      "Description": "Annie, célibataire et fauchée, est choisie comme demoiselle d'honneur par sa meilleure amie. Elle doit rivaliser avec une autre demoiselle d'honneur parfaite tout en gérant sa propre vie chaotique.",
+      "Keywords": "mariage, amitié féminine, jalousie, chaos, demoiselle d'honneur"
+    },
+    {
+      "FilmID": "F20",
+      "BlockID": "B03",
+      "Categorie": "Comédie",
+      "Film": "Groundhog Day",
+      "Description": "Un présentateur météo cynique se retrouve coincé dans une boucle temporelle, revivant sans cesse la même journée dans une petite ville qu'il déteste. Il doit apprendre à devenir meilleur pour s'en échapper.",
+      "Keywords": "boucle temporelle, transformation, journée répétée, Bill Murray, philosophique"
+    },
+    {
+      "FilmID": "F21",
+      "BlockID": "B03",
+      "Categorie": "Comédie",
+      "Film": "Little Miss Sunshine",
+      "Description": "Une famille dysfonctionnelle traverse les États-Unis en van pour emmener leur fille de 7 ans à un concours de beauté en Californie. Un road trip chaotique qui révèle les failles et l'amour de cette famille.",
+      "Keywords": "famille, road trip, concours de beauté, dysfonctionnel, van"
+    },
+    {
+      "FilmID": "F22",
+      "BlockID": "B04",
+      "Categorie": "Science-Fiction",
+      "Film": "Interstellar",
+      "Description": "Dans un futur où la Terre se meurt, un ancien pilote de la NASA est recruté pour une mission à travers un trou de ver afin de trouver une nouvelle planète habitable pour l'humanité. Un voyage épique à travers l'espace et le temps.",
+      "Keywords": "espace, trou de ver, NASA, survie humanité, Nolan"
+    },
+    {
+      "FilmID": "F23",
+      "BlockID": "B04",
+      "Categorie": "Science-Fiction",
+      "Film": "The Matrix",
+      "Description": "Un hacker découvre que le monde dans lequel il vit n'est qu'une simulation créée par des machines pour asservir l'humanité. Il rejoint un groupe de rebelles pour combattre ce système et libérer les humains.",
+      "Keywords": "simulation, réalité virtuelle, machines, élu, révolution"
+    },
+    {
+      "FilmID": "F24",
+      "BlockID": "B04",
+      "Categorie": "Science-Fiction",
+      "Film": "Blade Runner 2049",
+      "Description": "Un nouveau blade runner découvre un secret enfoui depuis longtemps qui pourrait plonger ce qu'il reste de la société dans le chaos. Sa découverte le mène à rechercher Rick Deckard, disparu depuis 30 ans.",
+      "Keywords": "réplicants, dystopie, Villeneuve, identité, futur"
+    },
+    {
+      "FilmID": "F25",
+      "BlockID": "B04",
+      "Categorie": "Science-Fiction",
+      "Film": "Arrival",
+      "Description": "Quand des vaisseaux extraterrestres apparaissent partout sur Terre, une linguiste est recrutée pour tenter de communiquer avec eux. Sa mission révèle des vérités profondes sur le temps et le langage.",
+      "Keywords": "extraterrestres, linguistique, communication, temps, premier contact"
+    },
+    {
+      "FilmID": "F26",
+      "BlockID": "B04",
+      "Categorie": "Science-Fiction",
+      "Film": "Ex Machina",
+      "Description": "Un programmeur remporte un concours pour passer une semaine dans la retraite isolée du PDG de sa société. Il y découvre qu'il doit évaluer les capacités d'une intelligence artificielle sous forme humanoïde.",
+      "Keywords": "intelligence artificielle, robot, test de Turing, manipulation, technologie"
+    },
+    {
+      "FilmID": "F27",
+      "BlockID": "B04",
+      "Categorie": "Science-Fiction",
+      "Film": "Dune",
+      "Description": "Paul Atreides, jeune homme brillant destiné à un avenir exceptionnel, doit se rendre sur la planète la plus dangereuse de l'univers pour assurer l'avenir de sa famille. Une épopée mystique sur le désert et le pouvoir.",
+      "Keywords": "désert, épice, prophétie, Villeneuve, empire galactique"
+    },
+    {
+      "FilmID": "F28",
+      "BlockID": "B04",
+      "Categorie": "Science-Fiction",
+      "Film": "Her",
+      "Description": "Dans un futur proche, un homme solitaire développe une relation amoureuse avec un système d'exploitation doté d'intelligence artificielle. Une exploration sensible de l'amour et de la connexion humaine à l'ère numérique.",
+      "Keywords": "IA, amour, solitude, futur proche, Spike Jonze"
+    },
+    {
+      "FilmID": "F29",
+      "BlockID": "B05",
+      "Categorie": "Drame",
+      "Film": "The Shawshank Redemption",
+      "Description": "Condamné à perpétuité pour un crime qu'il n'a pas commis, Andy Dufresne survit en prison grâce à son intelligence et son humanité, nouant une amitié indéfectible avec Red. Une histoire d'espoir et de rédemption.",
+      "Keywords": "prison, espoir, amitié, évasion, injustice"
+    },
+    {
+      "FilmID": "F30",
+      "BlockID": "B05",
+      "Categorie": "Drame",
+      "Film": "Forrest Gump",
+      "Description": "Forrest Gump, un homme simple d'esprit mais au grand cœur, traverse les moments clés de l'histoire américaine du XXe siècle. Son parcours extraordinaire touche tous ceux qu'il rencontre.",
+      "Keywords": "histoire américaine, destin, simplicité, amour, running"
+    },
+    {
+      "FilmID": "F31",
+      "BlockID": "B05",
+      "Categorie": "Drame",
+      "Film": "Schindler's List",
+      "Description": "L'histoire vraie d'Oskar Schindler, industriel allemand qui a sauvé plus de mille Juifs pendant la Shoah en les employant dans ses usines. Un témoignage poignant sur l'humanité au cœur de l'horreur.",
+      "Keywords": "Holocauste, Seconde Guerre mondiale, sauvetage, Spielberg, histoire vraie"
+    },
+    {
+      "FilmID": "F32",
+      "BlockID": "B05",
+      "Categorie": "Drame",
+      "Film": "The Pursuit of Happyness",
+      "Description": "Un père célibataire lutte contre la pauvreté et le sans-abrisme tout en élevant son fils et en poursuivant un stage non rémunéré qui pourrait changer leur vie. Une histoire vraie de persévérance.",
+      "Keywords": "pauvreté, père-fils, persévérance, rêve américain, Will Smith"
+    },
+    {
+      "FilmID": "F33",
+      "BlockID": "B05",
+      "Categorie": "Drame",
+      "Film": "12 Years a Slave",
+      "Description": "L'histoire vraie de Solomon Northup, un homme noir libre kidnappé et vendu comme esclave dans le Sud américain. Douze années de souffrance et de survie avant de retrouver sa liberté.",
+      "Keywords": "esclavage, survie, histoire vraie, injustice, liberté"
+    },
+    {
+      "FilmID": "F34",
+      "BlockID": "B05",
+      "Categorie": "Drame",
+      "Film": "A Beautiful Mind",
+      "Description": "La vie du mathématicien John Nash, génie tourmenté par la schizophrénie, qui malgré sa maladie mentale a révolutionné la théorie des jeux et remporté le prix Nobel. Un combat entre génie et folie.",
+      "Keywords": "mathématiques, schizophrénie, génie, Nobel, maladie mentale"
+    },
+    {
+      "FilmID": "F35",
+      "BlockID": "B05",
+      "Categorie": "Drame",
+      "Film": "Moonlight",
+      "Description": "L'histoire de Chiron, un jeune Afro-Américain de Miami, racontée en trois chapitres de sa vie. Son parcours explore l'identité, la sexualité et la quête de soi dans un environnement hostile.",
+      "Keywords": "identité, sexualité, Miami, grandir, afro-américain"
+    },
+    {
+      "FilmID": "F36",
+      "BlockID": "B06",
+      "Categorie": "Action",
+      "Film": "Mad Max: Fury Road",
+      "Description": "Dans un désert post-apocalyptique, Max s'allie à Furiosa, une guerrière rebelle qui fuit un tyran avec ses captives. Une course-poursuite effrénée à travers le wasteland pour atteindre la liberté.",
+      "Keywords": "post-apocalyptique, désert, poursuite, véhicules, Furiosa"
+    },
+    {
+      "FilmID": "F37",
+      "BlockID": "B06",
+      "Categorie": "Action",
+      "Film": "John Wick",
+      "Description": "Un ancien tueur à gages sort de sa retraite pour traquer les gangsters qui ont tué son chien, dernier cadeau de sa femme décédée. Une vendetta sanglante dans le monde des assassins.",
+      "Keywords": "assassin, vengeance, chien, Keanu Reeves, arts martiaux"
+    },
+    {
+      "FilmID": "F38",
+      "BlockID": "B06",
+      "Categorie": "Action",
+      "Film": "Die Hard",
+      "Description": "Un policier new-yorkais se retrouve seul à affronter des terroristes qui ont pris en otage les employés d'un gratte-ciel de Los Angeles, dont sa femme. Un combat solitaire contre une armée.",
+      "Keywords": "gratte-ciel, terroristes, Noël, Bruce Willis, otages"
+    },
+    {
+      "FilmID": "F39",
+      "BlockID": "B06",
+      "Categorie": "Action",
+      "Film": "The Dark Knight",
+      "Description": "Batman affronte le Joker, un criminel anarchiste qui plonge Gotham City dans le chaos. Un duel philosophique et physique entre l'ordre et le chaos, le héros et le vilain.",
+      "Keywords": "Batman, Joker, Gotham, Nolan, chaos"
+    },
+    {
+      "FilmID": "F40",
+      "BlockID": "B06",
+      "Categorie": "Action",
+      "Film": "Mission: Impossible - Fallout",
+      "Description": "Ethan Hunt et son équipe de l'IMF doivent retrouver des ogives nucléaires volées avant qu'elles ne soient utilisées. Une course contre la montre avec des cascades à couper le souffle.",
+      "Keywords": "espionnage, cascades, Tom Cruise, nucléaire, course contre la montre"
+    },
+    {
+      "FilmID": "F41",
+      "BlockID": "B06",
+      "Categorie": "Action",
+      "Film": "Gladiator",
+      "Description": "Un général romain trahi par l'empereur est réduit en esclavage et devient gladiateur. Il combat dans l'arène pour venger sa famille et restaurer l'honneur de Rome. Une épopée de vengeance et d'honneur.",
+      "Keywords": "Rome antique, gladiateur, vengeance, arène, Ridley Scott"
+    },
+    {
+      "FilmID": "F42",
+      "BlockID": "B06",
+      "Categorie": "Action",
+      "Film": "Top Gun: Maverick",
+      "Description": "Après plus de trente ans de service, Pete Mitchell est appelé à former une nouvelle génération de pilotes pour une mission quasi impossible. Le retour d'une légende de l'aviation.",
+      "Keywords": "aviation, pilote, formation, Tom Cruise, nostalgie"
+    },
+    {
+      "FilmID": "F43",
+      "BlockID": "B07",
+      "Categorie": "Horreur",
+      "Film": "Get Out",
+      "Description": "Un jeune Afro-Américain rend visite à la famille blanche de sa petite amie. Ce qui commence comme un week-end gênant se transforme en cauchemar quand il découvre les secrets terrifiants de cette famille.",
+      "Keywords": "racisme, thriller social, famille, secrets, Jordan Peele"
+    },
+    {
+      "FilmID": "F44",
+      "BlockID": "B07",
+      "Categorie": "Horreur",
+      "Film": "The Conjuring",
+      "Description": "Les enquêteurs paranormaux Ed et Lorraine Warren aident une famille terrorisée par une présence sombre dans leur ferme isolée. Basé sur une histoire vraie de possession démoniaque.",
+      "Keywords": "possession, démons, enquêteurs, famille, maison hantée"
+    },
+    {
+      "FilmID": "F45",
+      "BlockID": "B07",
+      "Categorie": "Horreur",
+      "Film": "Hereditary",
+      "Description": "Après la mort de leur grand-mère, une famille commence à découvrir des secrets terrifiants sur leur lignée. Une descente aux enfers psychologique et surnaturelle qui déconstruit une famille.",
+      "Keywords": "famille, secrets, surnaturel, héritage, Ari Aster"
+    },
+    {
+      "FilmID": "F46",
+      "BlockID": "B07",
+      "Categorie": "Horreur",
+      "Film": "A Quiet Place",
+      "Description": "Dans un monde post-apocalyptique où des créatures aveugles chassent au son, une famille doit vivre en silence absolu pour survivre. Chaque bruit peut être fatal.",
+      "Keywords": "silence, créatures, survie, famille, post-apocalyptique"
+    },
+    {
+      "FilmID": "F47",
+      "BlockID": "B07",
+      "Categorie": "Horreur",
+      "Film": "The Shining",
+      "Description": "Un écrivain devient gardien d'un hôtel isolé dans les montagnes pendant l'hiver avec sa famille. L'isolement et les forces surnaturelles de l'hôtel le poussent progressivement vers la folie meurtrière.",
+      "Keywords": "hôtel, isolement, folie, Kubrick, Stephen King"
+    },
+    {
+      "FilmID": "F48",
+      "BlockID": "B07",
+      "Categorie": "Horreur",
+      "Film": "It",
+      "Description": "Dans une petite ville du Maine, un groupe d'enfants affronte une entité maléfique qui prend la forme d'un clown et se nourrit des peurs des habitants. Un combat contre leurs terreurs les plus profondes.",
+      "Keywords": "clown, enfants, peur, Stephen King, Pennywise"
+    },
+    {
+      "FilmID": "F49",
+      "BlockID": "B08",
+      "Categorie": "Animation",
+      "Film": "Spirited Away",
+      "Description": "Une fillette de 10 ans se retrouve piégée dans un monde de esprits après que ses parents ont été transformés en cochons. Elle doit travailler dans un bain public pour esprits afin de les libérer.",
+      "Keywords": "Miyazaki, esprits, Japon, transformation, Ghibli"
+    },
+    {
+      "FilmID": "F50",
+      "BlockID": "B08",
+      "Categorie": "Animation",
+      "Film": "Coco",
+      "Description": "Miguel, un jeune garçon passionné de musique malgré l'interdiction de sa famille, se retrouve accidentellement dans le Monde des Morts. Il y découvre l'histoire secrète de sa famille et la magie de la mémoire.",
+      "Keywords": "Mexique, Jour des Morts, musique, famille, Pixar"
+    },
+    {
+      "FilmID": "F51",
+      "BlockID": "B08",
+      "Categorie": "Animation",
+      "Film": "Your Name",
+      "Description": "Deux adolescents japonais, un garçon de Tokyo et une fille d'un village rural, découvrent qu'ils échangent mystérieusement leurs corps. Ils tentent de se rencontrer dans un récit mêlant romance et fantastique.",
+      "Keywords": "échange de corps, Japon, romance, destin, Makoto Shinkai"
+    },
+    {
+      "FilmID": "F52",
+      "BlockID": "B08",
+      "Categorie": "Animation",
+      "Film": "Up",
+      "Description": "Un veuf de 78 ans réalise le rêve de sa vie en attachant des milliers de ballons à sa maison pour s'envoler vers l'Amérique du Sud. Un jeune scout embarque accidentellement dans cette aventure.",
+      "Keywords": "ballons, aventure, veuf, scout, Pixar"
+    },
+    {
+      "FilmID": "F53",
+      "BlockID": "B08",
+      "Categorie": "Animation",
+      "Film": "The Lion King",
+      "Description": "Simba, un jeune lion prince, fuit son royaume après la mort de son père dont il se croit responsable. Des années plus tard, il doit affronter son passé et reprendre sa place légitime.",
+      "Keywords": "Afrique, lion, roi, Disney, Hakuna Matata"
+    },
+    {
+      "FilmID": "F54",
+      "BlockID": "B08",
+      "Categorie": "Animation",
+      "Film": "Spider-Man: Into the Spider-Verse",
+      "Description": "Miles Morales, un adolescent de Brooklyn, devient le nouveau Spider-Man et rencontre des versions alternatives du héros venues d'autres dimensions. Ensemble, ils doivent sauver le multivers.",
+      "Keywords": "multivers, Spider-Man, Brooklyn, dimensions, animation innovante"
+    },
+    {
+      "FilmID": "F55",
+      "BlockID": "B08",
+      "Categorie": "Animation",
+      "Film": "Toy Story",
+      "Description": "Woody, le cowboy préféré d'Andy, voit sa position menacée par l'arrivée de Buzz l'Éclair, un nouveau jouet qui se croit être un vrai astronaute. Une aventure sur l'amitié et l'acceptation.",
+      "Keywords": "jouets, amitié, Pixar, cowboy, astronaute"
+    }
+  ]
+}
