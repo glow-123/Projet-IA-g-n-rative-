@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+from nlp_engine import obtenir_recommandations  # CONNEXION AU MOTEUR NLP
 
 # ========== CONFIGURATION DE LA PAGE ==========
 st.set_page_config(
@@ -19,7 +20,7 @@ Remplissez le questionnaire ci-dessous pour recevoir des recommandations adapté
 st.divider()
 
 # ========== QUESTIONNAIRE ==========
-st.header(" Questionnaire")
+st.header("📝 Questionnaire")
 
 # Deux colonnes pour organiser le formulaire
 col1, col2 = st.columns(2)
@@ -43,7 +44,7 @@ with col1:
     )
     
     # Questions guidées
-    st.subheader("Précisions optionnelles")
+    st.subheader("🎯 Précisions optionnelles")
     
     realisateurs = st.text_input(
         "Réalisateurs appréciés (optionnel)",
@@ -63,7 +64,7 @@ with col2:
     st.markdown("*Notez votre intérêt de 1 (pas du tout) à 5 (adore)*")
     
     pref_thriller = st.slider(
-        " Thriller / Suspense",
+        "Thriller / Suspense",
         min_value=1,
         max_value=5,
         value=3,
@@ -71,7 +72,7 @@ with col2:
     )
     
     pref_romance = st.slider(
-        " Romance",
+        "Romance",
         min_value=1,
         max_value=5,
         value=3,
@@ -79,7 +80,7 @@ with col2:
     )
     
     pref_comedie = st.slider(
-        " Comédie",
+        "Comédie",
         min_value=1,
         max_value=5,
         value=3,
@@ -87,7 +88,7 @@ with col2:
     )
     
     pref_sf = st.slider(
-        " Science-Fiction",
+        "Science-Fiction",
         min_value=1,
         max_value=5,
         value=3,
@@ -95,7 +96,7 @@ with col2:
     )
     
     pref_drame = st.slider(
-        " Drame",
+        "Drame",
         min_value=1,
         max_value=5,
         value=3,
@@ -103,7 +104,7 @@ with col2:
     )
     
     pref_action = st.slider(
-        " Action",
+        "Action",
         min_value=1,
         max_value=5,
         value=3,
@@ -111,7 +112,7 @@ with col2:
     )
     
     pref_horreur = st.slider(
-        " Horreur",
+        "Horreur",
         min_value=1,
         max_value=5,
         value=3,
@@ -119,7 +120,7 @@ with col2:
     )
     
     pref_animation = st.slider(
-        " Animation",
+        "Animation",
         min_value=1,
         max_value=5,
         value=3,
@@ -193,8 +194,8 @@ if st.button("Analyser et Recommander", type="primary", use_container_width=True
         # Afficher un message de succès
         st.success("✅ Réponses enregistrées ! Analyse en cours...")
         
-        # Afficher un récapitulatif (temporaire, sera remplacé par les résultats)
-        with st.expander("📋 Récapitulatif de vos réponses", expanded=True):
+        # Afficher un récapitulatif
+        with st.expander("Récapitulatif de vos réponses", expanded=False):
             st.write("**Description souhaitée :**", q1_description)
             st.write("**Ambiance recherchée :**", q2_ambiance)
             if realisateurs:
@@ -207,8 +208,37 @@ if st.button("Analyser et Recommander", type="primary", use_container_width=True
             for genre, score in reponses_utilisateur["preferences"].items():
                 st.write(f"  - {genre}: {'⭐' * score}")
         
-        # Placeholder pour les résultats (sera complété dans les phases suivantes)
-        st.info("Les recommandations seront affichées ici après l'intégration du moteur NLP (Phase 3).")
+        # ========== APPEL DU MOTEUR NLP ==========
+        with st.spinner("Analyse sémantique en cours..."):
+            recommandations = obtenir_recommandations(reponses_utilisateur, top_n=5)
+        
+        # ========== AFFICHAGE DES RÉSULTATS ==========
+        st.header("🎬 Vos Recommandations")
+        
+        # TOP 3 en colonnes
+        st.subheader("🏆 Top 3 Films pour vous")
+        cols = st.columns(3)
+        
+        for i, rec in enumerate(recommandations[:3]):
+            film = rec['film']
+            score = rec['score_semantique']
+            medaille = ["🥇", "🥈", "🥉"][i]
+            
+            with cols[i]:
+                st.markdown(f"### {medaille} {film['Film']}")
+                st.write(f"**Genre:** {film['Categorie']}")
+                st.write(f"**Score:** {score:.2%}")
+                st.progress(score)
+                st.write(f"*{film['Description'][:100]}...*")
+        
+        # Détails des 5 recommandations
+        with st.expander("Voir les 5 recommandations détaillées"):
+            for i, rec in enumerate(recommandations, 1):
+                film = rec['film']
+                score = rec['score_semantique']
+                st.write(f"**{i}. {film['Film']}** ({film['Categorie']}) - Score: {score:.2%}")
+                st.write(f"{film['Description']}")
+                st.divider()
 
 # ========== SIDEBAR : INFORMATIONS ==========
 with st.sidebar:
@@ -237,4 +267,3 @@ with st.sidebar:
             st.metric("Catégories", len(data.get("blocs", [])))
     except FileNotFoundError:
         st.warning("Référentiel non trouvé")
-
