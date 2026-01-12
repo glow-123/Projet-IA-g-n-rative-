@@ -212,7 +212,7 @@ if st.button("Analyser et Recommander", type="primary", use_container_width=True
 
 # ========== SIDEBAR : INFORMATIONS ==========
 with st.sidebar:
-    st.header("ℹ️ À propos")
+    st.header("À propos")
     st.markdown("""
     Ce système utilise l'**analyse sémantique** pour comprendre vos préférences 
     et vous recommander des films personnalisés.
@@ -222,7 +222,7 @@ with st.sidebar:
     - Similarité cosinus
     - IA Générative (Gemini)
     
-    **Projet EFREI M1**
+    **Projet IA Générative**
     - Gloria AMINI
     - Mohamad Khobaiz
     """)
@@ -237,3 +237,4 @@ with st.sidebar:
             st.metric("Catégories", len(data.get("blocs", [])))
     except FileNotFoundError:
         st.warning("Référentiel non trouvé")
+
