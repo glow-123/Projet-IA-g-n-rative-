@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import streamlit as st
 import json
 from nlp_engine import obtenir_recommandations  # CONNEXION AU MOTEUR NLP
@@ -378,3 +381,4 @@ with st.sidebar:
             st.metric("Catégories", len(data.get("blocs", [])))
     except FileNotFoundError:
         st.warning("Référentiel non trouvé")
+
