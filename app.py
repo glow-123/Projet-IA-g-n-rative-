@@ -356,17 +356,6 @@ with st.sidebar:
     st.markdown("""
     Ce système utilise l'**analyse sémantique** pour comprendre vos préférences 
     et vous recommander des films personnalisés.
-    
-    **Technologies utilisées :**
-    - SBERT (Sentence-BERT)
-    - Similarité cosinus
-    - Scoring pondéré
-    - IA Générative (Gemini)
-    - Visualisations Plotly
-    
-    **Projet IA Générative**
-    - Gloria AMINI
-    - Mohamad KHOBAIZ
     """)
     
     st.divider()
@@ -389,3 +378,4 @@ with st.sidebar:
             st.metric("Catégories", len(data.get("blocs", [])))
     except FileNotFoundError:
         st.warning("Référentiel non trouvé")
+
