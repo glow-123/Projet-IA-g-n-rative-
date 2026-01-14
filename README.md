@@ -90,7 +90,7 @@ Pour activer les explications IA personnalisées :
 2. Créer un fichier `.env` à la racine :
 
 ```env
-GOOGLE_API_KEY=AIzaSyDJa_K42tsjQEIJbcrYorP-GWzUuAHpqpQ
+GOOGLE_API_KEY=clé ici
 
 ```
 
