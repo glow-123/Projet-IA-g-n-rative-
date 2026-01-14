@@ -360,14 +360,14 @@ with st.sidebar:
     
     st.divider()
     
-    # Status Gemini
-    st.header("Status")
-    if gemini_available():
-        st.success("✅ Gemini connecté")
-    else:
-        st.warning("⚠️ Gemini non configuré")
-        st.caption("Ajoutez GOOGLE_API_KEY")
-    
+    # Status Gemini (visible uniquement avec ?debug=1 dans l'URL)
+    if st.query_params.get("debug") == "1":
+        st.header("Status")
+        if gemini_available():
+            st.success("✅ Gemini connecté")
+        else:
+            st.warning("⚠️ Gemini non configuré")
+            st.caption("Ajoutez GOOGLE_API_KEY")
     st.divider()
     
     st.header("Statistiques")
@@ -378,4 +378,3 @@ with st.sidebar:
             st.metric("Catégories", len(data.get("blocs", [])))
     except FileNotFoundError:
         st.warning("Référentiel non trouvé")
-
