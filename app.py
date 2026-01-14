@@ -1,6 +1,14 @@
 import streamlit as st
 import json
 from nlp_engine import obtenir_recommandations  # CONNEXION AU MOTEUR NLP
+from scoring import compute_final_score, ScoreBreakdown  # Phase 4: Scoring avancé
+from genai_module import generate_explanation, gemini_available  # Phase 5: Gemini
+from visualisations import (  # Phase 6: Visualisations
+    creer_graphique_scores_recommandations,
+    creer_radar_preferences,
+    creer_camembert_categories,
+    creer_comparaison_scores
+)
 
 # ========== CONFIGURATION DE LA PAGE ==========
 st.set_page_config(
@@ -20,7 +28,7 @@ Remplissez le questionnaire ci-dessous pour recevoir des recommandations adapté
 st.divider()
 
 # ========== QUESTIONNAIRE ==========
-st.header("📝 Questionnaire")
+st.header("Questionnaire")
 
 # Deux colonnes pour organiser le formulaire
 col1, col2 = st.columns(2)
@@ -44,7 +52,7 @@ with col1:
     )
     
     # Questions guidées
-    st.subheader("🎯 Précisions optionnelles")
+    st.subheader("Précisions optionnelles")
     
     realisateurs = st.text_input(
         "Réalisateurs appréciés (optionnel)",
@@ -64,7 +72,7 @@ with col2:
     st.markdown("*Notez votre intérêt de 1 (pas du tout) à 5 (adore)*")
     
     pref_thriller = st.slider(
-        "Thriller / Suspense",
+        "🔪 Thriller / Suspense",
         min_value=1,
         max_value=5,
         value=3,
@@ -166,7 +174,7 @@ if st.button("Analyser et Recommander", type="primary", use_container_width=True
     
     # Vérification des champs obligatoires
     if not q1_description.strip() or not q2_ambiance.strip():
-        st.error("⚠️ Veuillez remplir les deux descriptions textuelles (type de film et ambiance recherchée).")
+        st.error("Veuillez remplir les deux descriptions textuelles (type de film et ambiance recherchée).")
     else:
         # Stocker les réponses dans un dictionnaire
         reponses_utilisateur = {
@@ -208,36 +216,143 @@ if st.button("Analyser et Recommander", type="primary", use_container_width=True
             for genre, score in reponses_utilisateur["preferences"].items():
                 st.write(f"  - {genre}: {'⭐' * score}")
         
-        # ========== APPEL DU MOTEUR NLP ==========
+        # ========== PHASE 3 : APPEL DU MOTEUR NLP ==========
         with st.spinner("Analyse sémantique en cours..."):
-            recommandations = obtenir_recommandations(reponses_utilisateur, top_n=5)
+            recommandations_brutes = obtenir_recommandations(reponses_utilisateur, top_n=10)
+        
+        # ========== PHASE 4 : SCORING AVANCÉ ==========
+        with st.spinner("Calcul des scores pondérés..."):
+            recommandations_enrichies = []
+            
+            for rec in recommandations_brutes:
+                film = rec['film']
+                score_semantique = rec['score_semantique']
+                
+                # Calcul du score final avec pondération
+                breakdown = compute_final_score(
+                    cosine_similarity_raw=score_semantique,
+                    film=film,
+                    user_answers=reponses_utilisateur
+                )
+                
+                recommandations_enrichies.append({
+                    'film': film,
+                    'score_semantique': score_semantique,
+                    'breakdown': breakdown,
+                    'score_final': breakdown.final
+                })
+            
+            # Trier par score final
+            recommandations_enrichies.sort(key=lambda x: x['score_final'], reverse=True)
+            
+            # Garder le top 5
+            top_recommandations = recommandations_enrichies[:5]
+        
+        # ========== PHASE 5 : GÉNÉRATION DES EXPLICATIONS (Gemini) ==========
+        with st.spinner("Génération des explications personnalisées..."):
+            for rec in top_recommandations:
+                explanation = generate_explanation(
+                    user_answers=reponses_utilisateur,
+                    film=rec['film'],
+                    score_final=rec['score_final']
+                )
+                rec['explanation'] = explanation
         
         # ========== AFFICHAGE DES RÉSULTATS ==========
-        st.header("🎬 Vos Recommandations")
+        st.header("Vos Recommandations Personnalisées")
+        
+        # Indicateur Gemini
+        if gemini_available():
+            st.success("Explications générées par Gemini AI")
+        else:
+            st.info("Ajoutez GOOGLE_API_KEY pour des explications personnalisées par IA")
         
         # TOP 3 en colonnes
-        st.subheader("🏆 Top 3 Films pour vous")
+        st.subheader("Top 3 Films pour vous")
         cols = st.columns(3)
         
-        for i, rec in enumerate(recommandations[:3]):
+        medailles = ["🥇", "🥈", "🥉"]
+        
+        for i, rec in enumerate(top_recommandations[:3]):
             film = rec['film']
-            score = rec['score_semantique']
-            medaille = ["🥇", "🥈", "🥉"][i]
+            score_final = rec['score_final']
+            breakdown = rec['breakdown']
+            explanation = rec.get('explanation', '')
             
             with cols[i]:
-                st.markdown(f"### {medaille} {film['Film']}")
+                st.markdown(f"### {medailles[i]} {film['Film']}")
                 st.write(f"**Genre:** {film['Categorie']}")
-                st.write(f"**Score:** {score:.2%}")
-                st.progress(score)
-                st.write(f"*{film['Description'][:100]}...*")
+                st.write(f"**Score:** {score_final:.0%}")
+                st.progress(score_final)
+                
+                # Détail des scores
+                with st.expander("Détail du score"):
+                    st.write(f"- Sémantique: {breakdown.semantic:.0%}")
+                    st.write(f"- Genre: {breakdown.genre:.0%}")
+                    st.write(f"- Période: {breakdown.period:.0%}")
+                    st.write(f"- Langue: {breakdown.language:.0%}")
+                    if breakdown.people_bonus > 0:
+                        st.write(f"- Bonus: +{breakdown.people_bonus:.0%}")
+                
+                # Explication Gemini
+                st.info(f"{explanation}")
+        
+        st.divider()
+        
+        # ========== PHASE 6 : VISUALISATIONS ==========
+        st.subheader("Visualisations")
+        
+        # Préparer les données pour les visualisations (format tuple)
+        recommandations_viz = [
+            (rec['film'], rec['score_final']) 
+            for rec in top_recommandations
+        ]
+        
+        # Ligne 1 : Radar + Camembert
+        col_viz1, col_viz2 = st.columns(2)
+        
+        with col_viz1:
+            fig_radar = creer_radar_preferences(reponses_utilisateur["preferences"])
+            st.plotly_chart(fig_radar, use_container_width=True)
+        
+        with col_viz2:
+            fig_camembert = creer_camembert_categories(recommandations_viz)
+            st.plotly_chart(fig_camembert, use_container_width=True)
+        
+        # Ligne 2 : Barres horizontales des scores
+        fig_scores = creer_graphique_scores_recommandations(recommandations_viz)
+        st.plotly_chart(fig_scores, use_container_width=True)
+        
+        # Ligne 3 : Comparaison des scores
+        fig_comparaison = creer_comparaison_scores(recommandations_viz)
+        st.plotly_chart(fig_comparaison, use_container_width=True)
+        
+        st.divider()
         
         # Détails des 5 recommandations
         with st.expander("Voir les 5 recommandations détaillées"):
-            for i, rec in enumerate(recommandations, 1):
+            for i, rec in enumerate(top_recommandations, 1):
                 film = rec['film']
-                score = rec['score_semantique']
-                st.write(f"**{i}. {film['Film']}** ({film['Categorie']}) - Score: {score:.2%}")
-                st.write(f"{film['Description']}")
+                score_final = rec['score_final']
+                breakdown = rec['breakdown']
+                explanation = rec.get('explanation', '')
+                
+                st.markdown(f"### {i}. {film['Film']} ({film['Categorie']})")
+                
+                col_detail1, col_detail2 = st.columns([2, 1])
+                
+                with col_detail1:
+                    st.write(f"**Description:** {film['Description']}")
+                    st.write(f"**Mots-clés:** {film.get('Keywords', 'N/A')}")
+                    st.info(f"**Pourquoi ce film ?** {explanation}")
+                
+                with col_detail2:
+                    st.metric("Score Final", f"{score_final:.0%}")
+                    st.write(f"Sémantique: {breakdown.semantic:.0%}")
+                    st.write(f"Genre: {breakdown.genre:.0%}")
+                    st.write(f"Période: {breakdown.period:.0%}")
+                    st.write(f"Langue: {breakdown.language:.0%}")
+                
                 st.divider()
 
 # ========== SIDEBAR : INFORMATIONS ==========
@@ -250,16 +365,28 @@ with st.sidebar:
     **Technologies utilisées :**
     - SBERT (Sentence-BERT)
     - Similarité cosinus
+    - Scoring pondéré
     - IA Générative (Gemini)
+    - Visualisations Plotly
     
     **Projet IA Générative**
     - Gloria AMINI
-    - Mohamad Khobaiz
+    - Mohamad KHOBAIZ
     """)
     
     st.divider()
     
-    st.header("Statistiques du référentiel")
+    # Status Gemini
+    st.header("Status")
+    if gemini_available():
+        st.success("✅ Gemini connecté")
+    else:
+        st.warning("⚠️ Gemini non configuré")
+        st.caption("Ajoutez GOOGLE_API_KEY")
+    
+    st.divider()
+    
+    st.header("Statistiques")
     try:
         with open("referentiel_films.json", "r", encoding="utf-8") as f:
             data = json.load(f)
