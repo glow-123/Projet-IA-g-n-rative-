@@ -70,7 +70,7 @@ def creer_graphique_scores_recommandations(recommandations: list) -> go.Figure:
     
     fig.update_layout(
         title={
-            'text': "🎯 Scores de Similarité des Films Recommandés",
+            'text': "Scores de Similarité des Films Recommandés",
             'font': {'size': 18}
         },
         xaxis_title="Score de similarité (%)",
