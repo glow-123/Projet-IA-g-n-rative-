@@ -90,7 +90,8 @@ Pour activer les explications IA personnalisées :
 2. Créer un fichier `.env` à la racine :
 
 ```env
-GOOGLE_API_KEY=votre_clé_ici
+GOOGLE_API_KEY=AIzaSyDJa_K42tsjQEIJbcrYorP-GWzUuAHpqpQ
+
 ```
 
 > ⚠️ Sans clé API, l'application fonctionne avec des explications génériques.
