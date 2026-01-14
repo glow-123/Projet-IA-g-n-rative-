@@ -6,8 +6,7 @@ from genai_module import generate_explanation, gemini_available  # Phase 5: Gemi
 from visualisations import (  # Phase 6: Visualisations
     creer_graphique_scores_recommandations,
     creer_radar_preferences,
-    creer_camembert_categories,
-    creer_comparaison_scores
+    creer_camembert_categories
 )
 
 # ========== CONFIGURATION DE LA PAGE ==========
@@ -18,7 +17,7 @@ st.set_page_config(
 )
 
 # ========== TITRE ET INTRODUCTION ==========
-st.title("🎬 Système de Recommandation Cinématographique")
+st.title("Système de Recommandation Cinématographique")
 st.markdown("""
 *Découvrez des films personnalisés grâce à l'analyse sémantique de vos préférences.*
 
@@ -72,7 +71,7 @@ with col2:
     st.markdown("*Notez votre intérêt de 1 (pas du tout) à 5 (adore)*")
     
     pref_thriller = st.slider(
-        "🔪 Thriller / Suspense",
+        "Thriller / Suspense",
         min_value=1,
         max_value=5,
         value=3,
@@ -322,10 +321,6 @@ if st.button("Analyser et Recommander", type="primary", use_container_width=True
         # Ligne 2 : Barres horizontales des scores
         fig_scores = creer_graphique_scores_recommandations(recommandations_viz)
         st.plotly_chart(fig_scores, use_container_width=True)
-        
-        # Ligne 3 : Comparaison des scores
-        fig_comparaison = creer_comparaison_scores(recommandations_viz)
-        st.plotly_chart(fig_comparaison, use_container_width=True)
         
         st.divider()
         
